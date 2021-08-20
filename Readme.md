@@ -2,6 +2,7 @@
 Genos is a simple starter code generator.
 
 **To install globally**
+
 `$ npm i -g @adnanhashmi/genos`
 
 ## Usage
