@@ -3,11 +3,14 @@ Genos is a simple starter code generator.
 
 **To install globally**
 
-`$ npm i -g @adnanhashmi/genos`
+`$ npm i -g @adnanhashmi/genos@latest`
+
+**Or use with npx**
+`$ npx @adnanhashmi/genos@latest`
 
 ## Usage
 
-To generate the starter files, simply move to the desired directory and enter the following command :
+To generate the starter files, enter the following command :
 
 `$ genos`
 
