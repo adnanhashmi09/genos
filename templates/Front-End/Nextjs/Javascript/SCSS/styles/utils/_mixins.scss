@@ -1,0 +1,29 @@
+@use './variables' as *;
+
+@mixin heading-text {
+  font-size: $fnt-large;
+  color: $clr-black;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+@mixin caption-text {
+  font-size: $fnt-medium;
+  color: $clr-gray;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+@mixin details-text {
+  font-size: $fnt-small;
+  color: $clr-gray;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+@mixin semi-heading-text {
+  font-size: $fnt-semi-large;
+  color: $clr-black;
+  line-height: 1.2;
+  font-weight: 700;
+}

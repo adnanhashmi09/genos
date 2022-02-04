@@ -1,0 +1,71 @@
+@use './utils/variables' as *;
+@use './utils/include-media' as *;
+@use './utils/mixins' as *;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 10px;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  width: 100%;
+  background-color: $clr-white;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  text-rendering: optimizeLegibility;
+  color: $clr-black;
+  overflow-x: hidden;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+main {
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  max-width: calc(94vw);
+  overflow-x: hidden;
+  position: relative;
+  margin-top: 3rem;
+
+  @include media('>phone') {
+    max-width: calc(89vw);
+    overflow-x: hidden;
+  }
+}
+
+header,
+section {
+  padding: 5rem 0 0;
+  overflow-x: hidden;
+
+  @include media('>tablet') {
+    padding: 7.5rem 0 0;
+  }
+
+  @include media('>mindesk') {
+    padding: 13rem 0 0;
+  }
+
+  @include media('>LGdesktop') {
+    padding: 16rem 0 0;
+  }
+}

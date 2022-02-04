@@ -1,11 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
-const CURR_DIR = process.cwd();
+// const CURR_DIR = process.cwd();
 
 module.exports.createDirectoryContents = (
 	templatePath,
 	projectPath,
+	destination,
 	author,
 	description
 ) => {
@@ -30,17 +31,20 @@ module.exports.createDirectoryContents = (
 				content = JSON.stringify(content, null, 3);
 			}
 
-			const writePath = path.join(CURR_DIR, projectPath, filename);
+			const writePath = path.join(destination, projectPath, filename);
 			fs.writeFileSync(writePath, content, 'utf8');
 		}
 
 		if (stats.isDirectory()) {
-			fs.mkdirSync(path.join(CURR_DIR, projectPath, file));
+			fs.mkdirSync(path.join(destination, projectPath, file));
 
 			// recursive call to the function
 			this.createDirectoryContents(
 				path.join(templatePath, file),
-				path.join(projectPath, file)
+				path.join(projectPath, file),
+				destination,
+				author,
+				description
 			);
 		}
 	});

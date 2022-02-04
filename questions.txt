@@ -1,0 +1,30 @@
+Front-End 
+--React
+  -- SCSS
+  -- CSS
+
+  -- Javascript 
+  -- Typescript
+
+--Nextjs
+  -- SCSS
+  -- CSS
+
+  --Javascript
+  --Typescript
+
+--HTML CSS
+
+Server
+
+
+Full-Stack App
+
+
+Blockchain
+
+
+Full stack Dapp
+
+
+
