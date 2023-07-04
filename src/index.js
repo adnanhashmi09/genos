@@ -20,91 +20,95 @@ inquirer.registerPrompt('directory', require('inquirer-select-directory'));
 const CURR_DIR = process.cwd();
 
 const genos = async (ques) => {
-	console.clear();
-	// console.log(figlet.fontsSync());
-	console.log(
-		gradient.retro.multiline(
-			figlet.textSync('Genos', {
-				font: '3D-ASCII',
-				horizontalLayout: 'default',
-				verticalLayout: 'default',
-				width: 80,
-				whitespaceBreak: true,
-			})
-		)
-	);
+  console.clear();
+  // console.log(figlet.fontsSync());
+  console.log(
+    gradient.retro.multiline(
+      figlet.textSync('Genos', {
+        font: '3D-ASCII',
+        horizontalLayout: 'default',
+        verticalLayout: 'default',
+        width: 80,
+        whitespaceBreak: true,
+      })
+    )
+  );
 
-	console.log(
-		`${chalk.cyan(`Welcome to ${chalk.bold('Genos')} v2.0.0 `)} \n \n`
-	);
+  console.log(
+    `${chalk.cyan(`Welcome to ${chalk.bold('Genos')} v2.0.0 \n`)}`
+  );
 
-	let projectName;
-	let answers;
-	try {
-		answers = await inquirer.prompt(ques);
-		const projectChoice = answers['project-choice'];
-		projectName = answers['project-name'];
-		const detailsKeys = Object.keys(answers).filter((el) =>
-			el.includes('detail')
-		);
+  console.log(
+    `${chalk.cyan(`Let's jumpstart your project with generated starter files.`)} \n \n`
+  );
 
-		const details = detailsKeys.map((el) => answers[el]);
+  let projectName;
+  let answers;
+  try {
+    answers = await inquirer.prompt(ques);
+    const projectChoice = answers['project-choice'];
+    projectName = answers['project-name'];
+    const detailsKeys = Object.keys(answers).filter((el) =>
+      el.includes('detail')
+    );
 
-		const templatePath = path.join(
-			__dirname,
-			'..',
-			'templates',
-			projectChoice,
-			...details
-		);
+    const details = detailsKeys.map((el) => answers[el]);
 
-		fs.mkdirSync(path.join(answers.destination, projectName));
-		createDirectoryContents(
-			templatePath,
-			projectName,
-			answers.destination,
-			answers.author,
-			answers.description
-		);
-	} catch (e) {
-		if (e.message.includes('file already exists')) {
-			console.log(e.message);
-			process.exit(1);
-		}
-		console.log(e.message);
-		fs.rmdirSync(path.join(answers.destination, projectName), {
-			recursive: true,
-			force: true,
-		});
-		process.exit(1);
-	}
+    const templatePath = path.join(
+      __dirname,
+      '..',
+      'templates',
+      projectChoice,
+      ...details
+    );
 
-	async.series([
-		() => {
-			process.chdir(`${answers.destination}/${projectName}`);
-			const spinner = createSpinner('Downloading the packages...').start();
-			exec('yarn install', (error, stdout, stderr) => {
-				if (error) {
-					spinner.error({ text: 'Error downloading the packages' });
-				} else {
-					spinner.success({ text: 'Ready' });
-					console.log('\n');
-					console.log(
-						gradient.retro.multiline(
-							figlet.textSync('Happy Coding', {
-								font: 'Standard',
-								horizontalLayout: 'default',
-								verticalLayout: 'default',
-								width: 80,
-								whitespaceBreak: true,
-							})
-						)
-					);
-					console.log('\n \n');
-				}
-			});
-		},
-	]);
+    fs.mkdirSync(path.join(answers.destination, projectName));
+    createDirectoryContents(
+      templatePath,
+      projectName,
+      answers.destination,
+      answers.author,
+      answers.description
+    );
+  } catch (e) {
+    if (e.message.includes('file already exists')) {
+      console.log(e.message);
+      process.exit(1);
+    }
+    console.log(e.message);
+    fs.rmdirSync(path.join(answers.destination, projectName), {
+      recursive: true,
+      force: true,
+    });
+    process.exit(1);
+  }
+
+  async.series([
+    () => {
+      process.chdir(`${answers.destination}/${projectName}`);
+      const spinner = createSpinner('Downloading the packages...').start();
+      exec('yarn install', (error, stdout, stderr) => {
+        if (error) {
+          spinner.error({ text: 'Error downloading the packages' });
+        } else {
+          spinner.success({ text: 'Ready' });
+          console.log('\n');
+          console.log(
+            gradient.retro.multiline(
+              figlet.textSync('Happy Coding', {
+                font: 'Standard',
+                horizontalLayout: 'default',
+                verticalLayout: 'default',
+                width: 80,
+                whitespaceBreak: true,
+              })
+            )
+          );
+          console.log('\n \n');
+        }
+      });
+    },
+  ]);
 };
 
 genos(QUESTIONS);
