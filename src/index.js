@@ -35,7 +35,7 @@ const genos = async (ques) => {
   );
 
   console.log(
-    `${chalk.cyan(`Welcome to ${chalk.bold('Genos')} v2.0.0 \n`)}`
+    `${chalk.cyan(`Welcome to ${chalk.bold('Genos')} v2.0.2 \n`)}`
   );
 
   console.log(
